@@ -2,13 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Game } from '../../models/game';
 import { PlayerComponent } from '../player/player.component';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent],
+  imports: [CommonModule, PlayerComponent, MatButton, MatIcon],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
