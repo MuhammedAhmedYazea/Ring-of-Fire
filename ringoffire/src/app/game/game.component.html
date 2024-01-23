@@ -22,6 +22,6 @@ class="player-position" [ngStyle]="{'top.px': 100 + (i * 120)}" [name]="player">
     </div>
 </div>
 
-<button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-    <mat-icon>delete</mat-icon>
+<button mat-fab color="primary" class="btn-add" (click)="openDialog()">
+    <mat-icon>add</mat-icon>
   </button>
