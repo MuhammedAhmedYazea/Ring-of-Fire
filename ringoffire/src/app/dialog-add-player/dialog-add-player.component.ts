@@ -42,6 +42,10 @@ export class DialogAddPlayerComponent {
    
   }
 
-
+   dialogRef = this.dialog.open(DialogAddPlayerComponent);
+  onNoClick(): void {
+   
+    this.dialogRef.close();
+  }
   
 }
