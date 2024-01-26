@@ -38,13 +38,12 @@ import { GameComponent } from '../game/game.component';
 export class DialogAddPlayerComponent {
   name: string = '';
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialogRef: MatDialogRef<DialogAddPlayerComponent>) {
    
   }
 
-   dialogRef = this.dialog.open(DialogAddPlayerComponent);
+   // dialogRef = this.dialog.open(DialogAddPlayerComponent);
   onNoClick(): void {
-   
     this.dialogRef.close();
   }
   

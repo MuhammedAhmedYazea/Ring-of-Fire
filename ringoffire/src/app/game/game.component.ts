@@ -5,7 +5,7 @@ import { PlayerComponent } from '../player/player.component';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
-import {Component, Inject} from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -15,17 +15,17 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent, MatButton, MatIcon,  MatFormFieldModule,
+  imports: [CommonModule, PlayerComponent, MatButton, MatIcon, MatFormFieldModule,
     MatInputModule,
     FormsModule,
     MatButtonModule,
@@ -49,10 +49,10 @@ export class GameComponent {
   constructor(public dialog: MatDialog) {
     this.newGame(); // Hier wird ein neues Spiel initialisiert. WICHTIG: Das war nötig, damit meine Funktion läuft, bevor... 
   } // die nächste Funktion geladen wird, die ja auf newGame() zugreifen will. Diese braucht man, um Game zu initialisiren, damit die pop()-Funktion die Daten von game.stack ablesen kann
- 
+
   takeCard() {
-    if(!this.pickCardAnimation) {
-      
+    if (!this.pickCardAnimation) {
+
       let currentCardBanana = this.game.stack.pop();
       if (currentCardBanana != undefined) {
         this.currentCard = currentCardBanana;
@@ -60,7 +60,7 @@ export class GameComponent {
         currentCardBanana;
       }
       this.pickCardAnimation = true;
-      
+
       setTimeout(() => {
         this.game.playedCard.push(this.currentCard);
         this.pickCardAnimation = false;
@@ -71,9 +71,9 @@ export class GameComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
-      });
-    }
-  
+    //dialogRef.afterClosed().subscribe(result => {
+    //  console.log('The dialog was closed');
+    //});
+  }
+
 }
