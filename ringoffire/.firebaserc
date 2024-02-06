@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ring-of-fire-db2d4": {
+      "hosting": {
+        "ringoffire": [
+          "ring-of-fire-db2d4"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ring-of-fire-db2d4"
+  }
+}
