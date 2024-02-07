@@ -5,7 +5,7 @@ import { PlayerComponent } from '../player/player.component';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 
-import { Component, Inject, Injectable } from '@angular/core';
+import { Component, inject, Injectable } from '@angular/core';
 import {
   MatDialog,
   MAT_DIALOG_DATA,
@@ -25,7 +25,8 @@ import { GameInfoComponent } from '../game-info/game-info.component';
 
 //import { FirestoreModule, getFirestore, provideFirestore,  } from '@angular/fire/firestore';
 
-import { Firestore, collection  } from '@angular/fire/firestore';
+import { Firestore, collection, doc, collectionData  } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-game',
@@ -52,11 +53,15 @@ export class GameComponent {
   currentCard: string = '';
   game!: Game;
 
-  //firestore: Firestore = inject(Firestore); <-- der Übeltäter
+  //items$;
+
+  firestore: Firestore = inject(Firestore);
+
+  
 
 ngOnInit(): void {
-  //this.firestore.collection('items').valueChanges().subscribe((game) => {
-   //console.log('Game Update', game);  <-- Hier auch
+  //collection(this.firestore, 'games').valueChanges().subscribe((game) => {
+   //console.log('Game Update', game);  
   //});
 }
 
@@ -64,9 +69,15 @@ ngOnInit(): void {
     this.game = new Game();
   }
 
-  constructor(private firestore: Firestore, public dialog: MatDialog) {
+  constructor( public dialog: MatDialog) {
     this.newGame(); // Hier wird ein neues Spiel initialisiert. WICHTIG: Das war nötig, damit meine Funktion läuft, bevor... 
+   // this.items$ = collectionData(this.getSingleDocRef());
   } // die nächste Funktion geladen wird, die ja auf newGame() zugreifen will. Diese braucht man, um Game zu initialisiren, damit die pop()-Funktion die Daten von game.stack ablesen kann
+
+  // Neue Funktion
+  getSingleDocRef(colId:string, docId:string) {
+    return doc(collection(this.firestore, colId), docId);
+  }
 
   takeCard() {
     if (!this.pickCardAnimation) {
